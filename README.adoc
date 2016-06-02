@@ -1,2 +1,65 @@
-# iotivity.darwin
+= iotivity.darwin
+
 Iotivity on OS X Darwin
+
+
+== tools
+
+Some darwin-specific tools you may find useful along the way:
+
+* otool - object file displaying tool
+
+=== dependencies
+
+For Ubuntu, you would use `apt-get` to install dependencies.  On OS X,
+the best bet is probably `brew`, the http://brew.sh/[homebrew]
+command.  Try `brew search foo` and `brew info foo` to get a feel for
+what's what for package foo.
+
+WARNING: Some of this stuff (e.g. libffi, uuid) comes bundled with OS X.  The
+problem is that such bundled libraries do not come with `pkg-config`
+files, which the Iotivity build scripts use.  So either you have to
+install a third-party package that includes a pkg-config file, or you
+have to create and install the appropriate pkg-config file.  And the
+problem with that is that you do not want to install such in the
+system `/usr/lib/pkgconfig` dir, while if you install to
+`/usr/local/lib/pkgconfig` they will not be picked up by the build
+scripts.  That's because `scons`, the build tool, does not pull in
+environment vars, so it only uses the default search path for
+`pkg-config`, which is `/usr/lib/pkgconfig`.
+
+* https://developer.apple.com/xcode/download/[xcode] - gcc/g++ compilers.  Starting from xcode 4.2 OS X uses http://clang.llvm.org/get_started.html[clang].
+*  https://developer.apple.com/library/ios/technotes/tn2339/_index.html[xcode
+  command line tools] Just do a web search on "install os x command
+  line tools" or similar to get lots of guidance.
+
+NOTE: Apparently you can install the command line tools, including the
+compilers, without also installing xcode, by doing `$ xcode-select
+--install`.
+
+* https://www.freedesktop.org/wiki/Software/pkg-config/[pkg-config]
+** Not bundled.  `$ brew install pkg-config`
+* http://www.bzip.org/[bzip2] - preinstalled in OS X
+* https://github.com/01org/tinycbor[tinycbor] - see below
+* https://github.com/google/googletest[Google Test] - see below
+* http://site.icu-project.org/download[libicu]
+** `brew` says "OS X provides libicucore.dylib (but nothing else).".  The brew package is `icu4c`.
+* ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/[libpcre]
+** `/usr/lib/libpcre.*` bundled with OS X, but may not be enough
+** `$ brew install pcre`
+** Must be compiled with Unicode support.  To verify, run `$ pcretest -C`.
+* libffi.  bundled
+** `$ brew install libffi`
+* http://linux.die.net/man/3/libuuid[uuid]  Preinstalled on OS X.
+* glib-2.0 - required by Bluetooth LE (only?)
+** The build scripts use `pkg-config` to check for gio-unix-2.0, which in turn depends on:
+*** gobject-2.0
+*** gio-2.0, which in turn requires
+**** glib-2.0
+**** gobject-2.0
+** All of that stuff gets installed with glib-2.0
+*** `$ brew install glib`  (NB: not glib2)
+* http://www.boost.org/[boost]  `$ brew install boost`
+* http://scons.org/[scons]  `$brew install scons`
+* http://www.stack.nl/~dimitri/doxygen/[doxygen]  `$ brew install doxygen`
+
