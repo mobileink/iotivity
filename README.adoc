@@ -6,6 +6,15 @@ WARNING: This is derived from the official Gerrit repo, created for
 experimentation.  If you want the real thing, you should obtain it
 from the official https://www.iotivity.org/[Iotivity site].
 
+== branches
+
+The `iotivity-master` branch cleanly tracks the official Gerrit master
+branch.  At least it does when I get around to pulling in the changes.
+
+Branch `darwin` is where darwin development takes place.
+
+Branch `master` pulls in changes from branch `darwin`. So that's what
+you get by default if you fork/clone this repo.
 
 == tools
 
