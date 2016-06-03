@@ -27,9 +27,11 @@
 #include <iostream>
 #include "SysTimer.h"
 
-#ifdef __ANDROID__
-#include "OCAndroid.h"
-#endif
+#include <string>  //GAR
+
+// #ifdef __ANDROID__
+// #include "OCAndroid.h"
+// #endif
 
 using namespace DiscomfortIndexSensorName;
 

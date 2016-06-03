@@ -23,13 +23,16 @@
  */
 #include "BMISensor.h"
 
-#include <iostream>
 #include <stdlib.h>
 #include "SysTimer.h"
 
-#ifdef __ANDROID__
-#include "OCAndroid.h"
-#endif
+#include <cmath>		//GAR
+#include <iostream>
+#include <string>		//GAR
+
+// #ifdef __ANDROID__   //GAR
+// #include "OCAndroid.h"
+// #endif
 
 using namespace BMISensorName;
 
@@ -90,7 +93,7 @@ BMIResult BMISensor::makeBMI(void)
         dWeight = std::stod(m_weight);
         dHeight = std::stod(m_height);
 
-        timediffsecond = abs(difftime(m_timepstampW, m_timepstampH));
+        timediffsecond = std::abs(difftime(m_timepstampW, m_timepstampH)); //GAR
 
         // check if time difference between weight data and height data is valid
         if (timediffsecond > DIFFTIME)

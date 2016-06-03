@@ -23,7 +23,8 @@ extern "C" {
 #include "Hosting.h"
 }
 #include "ResourceHosing_JNI.h"
-#include "OCAndroid.h"
+// #include "OCAndroid.h"  //GAR
+#include <string>		//GAR
 
 using namespace std;
 

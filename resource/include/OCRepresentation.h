@@ -43,9 +43,10 @@
 #include <AttributeValue.h>
 #include <StringConstants.h>
 
-#ifdef __ANDROID__
-#include "OCAndroid.h"
-#endif
+#include <string>		//GAR
+/* #ifdef __ANDROID__ */
+/* #include "OCAndroid.h" */
+/* #endif */
 
 #include <OCException.h>
 
