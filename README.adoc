@@ -1,14 +1,32 @@
-= iotivity.darwin
-
-Iotivity on Darwin
+= iotivity
 
 WARNING: This is derived from the official Gerrit repo, created for
 experimentation.  If you want the real thing, you should obtain it
 from the official https://www.iotivity.org/[Iotivity site].
 
-To build:  `$ scons SYS_VERSION=10.11` (or whatever your OS X version is).
+Status:  Darwin port seems to be working.
 
-To see what's happening: `$ scons SYS_VERSION=10.11 VERBOSE=true 2>&1 | tee build.log`
+=== plans
+
+* more testing of darwin port
+* make sure it still compiles on Linux, Tizen, etc.
+* clean up: make it strictly darwin, w/o dependencies on os x
+* add a separate project to support an OS X Framework
+* get it into official codebase
+
+==== java support
+
+* support for TARGET_OS=JVM.  A variant on the `generic-java`
+branch that is under development.
+* make android a separate thing, something like `TARGET_OS=JVM TARGET_ENV=ANDROID`
+** android depends on jvm target
+=== building
+
+`$ scons`
+
+To see what's happening: `$ scons VERBOSE=true 2>&1 | tee build.log`
+
+You can give it an OS X version:  `$ scons SYS_VERSION=10.11`.
 
 == branches
 
