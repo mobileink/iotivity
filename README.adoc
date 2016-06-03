@@ -63,3 +63,12 @@ compilers, without also installing xcode, by doing `$ xcode-select
 * http://scons.org/[scons]  `$brew install scons`
 * http://www.stack.nl/~dimitri/doxygen/[doxygen]  `$ brew install doxygen`
 
+== tinycbor
+
+When you first build, you'll get this:
+
+*********************************** Error: *************************************
+* Please download cbor using the following command:                               *
+*     $ git clone https://github.com/01org/tinycbor.git extlibs/tinycbor/tinycbor *
+******************************************************************************
+

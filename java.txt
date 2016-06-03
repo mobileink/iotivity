@@ -1,0 +1,45 @@
+
+branch:  generic-java
+
+patch set: https://gerrit.iotivity.org/gerrit/#/c/7895/
+
+pull patch set:
+
+http://stackoverflow.com/questions/28370567/how-to-git-pull-a-given-patch-set-from-gerrit
+
+
+JDK:
+
+	system-specific:  $JAVA_HOME/include/$SYS where $SYS is
+	  linux:  linux
+	  darwin: darwin
+	  windows 10: win32
+
+COMPILER MACROS:
+
+	 windows:  _WIN32, _WIN64 (MS compilers)
+	 	   __CYGWIN__, __CYGWIN32__  (Cygwin gcc)
+		   __MINGW32__, __MINGW64__
+		   __POCC__  (Pelles C Compiler)
+
+    lcc  https://sites.google.com/site/lccretargetablecompiler/
+    llvm
+    etc.
+
+  free c compilers: http://cplus.about.com/od/glossary/a/compilers.htm
+       http://www.smorgasbordet.com/pellesc/
+
+
+DEFINES:
+
+  __ANDROID__ should imply __JAVA__, so there is no need for e.g.
+
+  	      #if defined(__ANDROID__) || defined(__JAVA__)
+
+TARGET_OS:  shouldn't we use e.g. TARGET_OS=JVM instead of BUILD_JAVA=ON?
+
+	    then what about android?  isn't that a target os? no, its JVM extended
+
+	    so to build for android: TARGET_OS=JVM, ANDROID=true
+
+
