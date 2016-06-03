@@ -1,0 +1,11 @@
+##
+# Examples build script
+##
+Import('env')
+
+target_os = env.get('TARGET_OS')
+if target_os == 'linux':
+	SConscript('linux/SConscript')
+
+if target_os == 'darwin':  #GAR
+	SConscript('linux/SConscript')

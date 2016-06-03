@@ -1,0 +1,41 @@
+##
+# sample sensor app  build script
+##
+
+Import('env')
+
+# Add third party libraries
+lib_env = env.Clone()
+SConscript(env.get('SRC_DIR') + '/service/third_party_libs.scons', 'lib_env')
+sample_env = lib_env.Clone()
+
+######################################################################
+# Build flags
+######################################################################
+sample_env.AppendUnique(CPPPATH = ['include'])
+sample_env.AppendUnique(CXXFLAGS = ['-Wall', '-pthread','-std=c++0x'])
+#GAR sample_env.AppendUnique(CPPDEFINES = ['LINUX'])
+sample_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
+sample_env.AppendUnique(LIBS = ['coap'])
+sample_env.AppendUnique(LIBS = ['connectivity_abstraction'])
+sample_env.AppendUnique(LIBS = ['oc_logger'])
+sample_env.AppendUnique(LIBS = ['octbstack'])
+sample_env.AppendUnique(LIBS = ['oc'])
+sample_env.AppendUnique(LIBS = ['pthread'])
+
+if env.get('SECURED') == '1':
+    sample_env.AppendUnique(LIBS = ['tinydtls'])
+
+# On some platforms link order can miss functions so librt needs to be
+# re-scanned at the end if present. gcc 4.6 is one with this issue.
+target_os = env.get('TARGET_OS')  #GAR
+if target_os in ['linux']:  #GAR
+   if 'rt' in sample_env.get('LIBS'):
+      sample_env.Append(LIBS = ['rt'])
+
+######################################################################
+#build sampleapp
+######################################################################
+thsensorapp1 = sample_env.Program('THSensorApp1', 'src/ThingResourceServer1.cpp')
+Alias("thsensorapp1_sample", thsensorapp1)
+env.AppendTarget('thsensorapp1_sample')
