@@ -1,6 +1,10 @@
 = iotivity.darwin
 
-Iotivity on OS X Darwin
+Iotivity on Darwin
+
+WARNING: This is derived from the official Gerrit repo, created for
+experimentation.  If you want the real thing, you should obtain it
+from the official https://www.iotivity.org/[Iotivity site].
 
 
 == tools
