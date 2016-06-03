@@ -816,11 +816,8 @@ void DeletePlatformInfo()
 void DeleteDeviceInfo()
 {
     free (deviceInfo.deviceName);
-<<<<<<< HEAD
     free (deviceInfo.specVersion);
     free (deviceInfo.dataModleVersion);
-=======
->>>>>>> darwin-tmp
 }
 
 bool DuplicateString(char** targetString, const char* sourceString)
@@ -924,17 +921,12 @@ OCStackResult SetPlatformInfo(const char* platformID, const char *manufacturerNa
     return OC_STACK_ERROR;
 }
 
-<<<<<<< HEAD
 OCStackResult SetDeviceInfo(const char* deviceName, const char* specVersion, const char* dataModleVersion)
-=======
-OCStackResult SetDeviceInfo(const char* deviceName)
->>>>>>> darwin-tmp
 {
     if(!DuplicateString(&deviceInfo.deviceName, deviceName))
     {
         return OC_STACK_ERROR;
     }
-<<<<<<< HEAD
     if(!DuplicateString(&deviceInfo.specVersion, specVersion))
     {
         return OC_STACK_ERROR;
@@ -943,8 +935,6 @@ OCStackResult SetDeviceInfo(const char* deviceName)
     {
         return OC_STACK_ERROR;
     }
-=======
->>>>>>> darwin-tmp
     return OC_STACK_OK;
 }
 
@@ -1065,11 +1055,7 @@ int main(int argc, char* argv[])
         exit (EXIT_FAILURE);
     }
 
-<<<<<<< HEAD
     registrationResult = SetDeviceInfo(deviceName, specVersion, dataModleVersion);
-=======
-    registrationResult = SetDeviceInfo(deviceName);
->>>>>>> darwin-tmp
 
     if (registrationResult != OC_STACK_OK)
     {

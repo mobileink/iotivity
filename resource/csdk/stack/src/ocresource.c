@@ -1027,7 +1027,7 @@ HandleResourceWithEntityHandler (OCServerRequest *request,
     OCPayloadType type = PAYLOAD_TYPE_REPRESENTATION;
     // check the security resource
     //GAR bugfix: request->resourceUrl always true
-    if (request && request->resourceUrl[0] && SRMIsSecurityResourceURI(request->resourceUrl)) #GAR
+    if (request && request->resourceUrl[0] && SRMIsSecurityResourceURI(request->resourceUrl)) //GAR
     {
         type = PAYLOAD_TYPE_SECURITY;
 
