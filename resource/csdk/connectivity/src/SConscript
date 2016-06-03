@@ -34,6 +34,10 @@ if ca_os not in ['arduino', 'windows', 'winrt']:
 if ca_os not in ['darwin', 'ios', 'windows', 'winrt']:
 	env.AppendUnique(LINKFLAGS = ['-Wl,--no-undefined'])
 
+if ca_os == 'darwin':  #GAR
+	env.AppendUnique(LINKFLAGS = ['-Wl,-undefined,error'])
+	env.AppendUnique(CFLAGS = ['-std=c11'])  #GAR
+
 if ca_os in ['darwin','ios']:
 	env.AppendUnique(CPPDEFINES = ['_DARWIN_C_SOURCE'])
 

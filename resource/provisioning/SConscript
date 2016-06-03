@@ -48,11 +48,11 @@ if target_os == 'android':
 	ocprovision_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 	ocprovision_env.AppendUnique(LIBS = ['oc', 'octbstack', 'ocpmapi', 'oc_logger', 'boost_thread', 'gnustl_shared', 'log'])
 
-if target_os in ['linux', 'tizen']:
+if target_os in ['linux', 'tizen', 'darwin']:  #GAR added darwin
 	ocprovision_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
         ocprovision_env.AppendUnique(LIBS = ['oc', 'octbstack', 'ocpmapi', 'oc_logger', 'boost_thread'])
 
-if target_os in ['darwin', 'ios']:
+if target_os in ['ios']:  #GAR
 	ocprovision_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 	ocprovision_env.AppendUnique(LIBS = ['octbstack', 'oc_logger'])
 

@@ -29,7 +29,7 @@ target_os = env.get('TARGET_OS')
 src_dir = env.get('SRC_DIR')
 build_dir = env.get('BUILD_DIR')
 
-if target_os == 'linux':
+if target_os in ['darwin','linux']:  #GAR add darwin
 	# Verify that 'google unit test' library is installed.  If not,
 	# get it and install it
 	SConscript(src_dir + '/extlibs/gtest/SConscript')

@@ -24,7 +24,7 @@
 #include <thread>
 
 #include "pinoxmcommon.h"
-#include "ocprovisioningmanager.h"
+#include "ocprovisioning_manager.h" //GAR case-sensitivity
 #include "OCApi.h"
 #include "OCPlatform_impl.h"
 

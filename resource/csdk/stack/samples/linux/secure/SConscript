@@ -45,7 +45,8 @@ samples_env.PrependUnique(LIBS = ['octbstack', 'm', 'connectivity_abstraction', 
 if env.get('SECURED') == '1':
     samples_env.AppendUnique(LIBS = ['tinydtls'])
 
-samples_env.Append(LINKFLAGS = ['-Wl,--no-as-needed'])
+if target_os == 'linux':  #GAR
+   samples_env.Append(LINKFLAGS = ['-Wl,--no-as-needed'])
 
 if target_os == 'android':
 	samples_env.AppendUnique(CXXFLAGS = ['-frtti', '-fexceptions'])

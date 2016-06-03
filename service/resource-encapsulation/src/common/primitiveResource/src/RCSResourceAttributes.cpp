@@ -206,7 +206,9 @@ namespace
     };
 
     template< typename VARIANT, int POS >
-    constexpr inline std::vector< TypeInfo > getTypeInfo(Int2Type< POS >) noexcept
+    /*GAR constexpr */
+    inline std::vector< TypeInfo > getTypeInfo(Int2Type< POS >) noexcept
+    //GAR error: constexpr function's return type 'std::vector<TypeInfo>' is not a literal type
     {
         auto vec = getTypeInfo< VARIANT >(Int2Type< POS - 1 >{ });
         vec.push_back(TypeInfo::get< VARIANT, POS >());
@@ -214,7 +216,9 @@ namespace
     }
 
     template< typename VARIANT >
-    constexpr inline std::vector< TypeInfo > getTypeInfo(Int2Type< 0 >) noexcept
+    /*GAR constexpr*/
+    inline std::vector< TypeInfo > getTypeInfo(Int2Type< 0 >) noexcept
+    //GAR error: constexpr function's return type 'std::vector<TypeInfo>' is not a literal type
     {
         return { TypeInfo::get< VARIANT, 0 >() };
     }

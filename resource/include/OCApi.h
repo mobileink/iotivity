@@ -28,6 +28,12 @@
 #include <memory>
 #include <iterator>
 
+#ifdef __APPLE__  //GAR
+    #ifdef __MACH__  //GAR
+#include <cstddef>  //GAR
+    #endif
+#endif
+
 #include "octypes.h"
 #include "OCHeaderOption.h"
 #include <OCException.h>

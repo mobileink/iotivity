@@ -18,7 +18,7 @@
  *
  * *****************************************************************/
 #include "gtest/gtest.h"
-#include "ocprovisioningmanager.h"
+#include "ocprovisioning_manager.h"   //GAR case-sensitivity
 
 static OicSecAcl_t acl1;
 static OicSecAcl_t acl2;

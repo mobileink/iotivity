@@ -22,7 +22,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
-#include "ocprovisioningmanager.h"
+#include "ocprovisioning_manager.h"   //GAR case-sensitivity
 #include "secureresourceprovider.h"
 #include "logger.h"
 #include "oic_malloc.h"

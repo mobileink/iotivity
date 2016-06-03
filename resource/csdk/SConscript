@@ -60,7 +60,7 @@ liboctbstack_env.PrependUnique(CPPPATH = [
 
 if target_os not in ['arduino', 'windows', 'winrt']:
 	liboctbstack_env.AppendUnique(CPPDEFINES  = ['WITH_POSIX'])
-	liboctbstack_env.AppendUnique(CFLAGS = ['-std=c99'])
+	liboctbstack_env.AppendUnique(CFLAGS = ['-std=c11'])  #GAR
 
 if liboctbstack_env.get('ROUTING') == 'GW':
 	liboctbstack_env.AppendUnique(CPPDEFINES = ['ROUTING_GATEWAY'])
@@ -72,7 +72,7 @@ if target_os not in ['windows', 'winrt']:
 
 liboctbstack_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 
-if target_os in ['android', 'linux', 'tizen']:
+if target_os in ['android', 'linux', 'tizen', 'darwin']:  #GAR add darwin
 	liboctbstack_env.PrependUnique(LIBS = ['connectivity_abstraction'])
 
 	if with_ra_ibb:
@@ -84,7 +84,10 @@ if target_os in ['android', 'linux', 'tizen']:
 liboctbstack_env.AppendUnique(LIBS = ['coap', 'm'])
 liboctbstack_env.PrependUnique(LIBS = ['ocsrm'])
 
-if target_os in ['tizen', 'linux']:
+#if target_os == 'darwin':  #GAR remove me
+#   liboctbstack_env.PrependUnique(LIBS = ['octbstack'])  #GAR remove me
+
+if target_os in ['tizen', 'linux', 'darwin']:  #GAR add darwin
 	liboctbstack_env.ParseConfig("pkg-config --cflags --libs uuid")
 
 if target_os not in ['android', 'arduino', 'windows', 'winrt']:
@@ -92,14 +95,24 @@ if target_os not in ['android', 'arduino', 'windows', 'winrt']:
 
 if target_os == 'arduino':
 	liboctbstack_env.AppendUnique(CPPDEFINES = ['NDEBUG', 'WITH_ARDUINO'])
-elif target_os not in ['darwin','ios']:
+elif target_os not in ['ios']:  #GAR 'darwin',
 	liboctbstack_env.AppendUnique(CFLAGS = ['-fPIC'])
+
 if target_os in ['darwin', 'ios']:
 	env.AppendUnique(CPPDEFINES = ['_DARWIN_C_SOURCE'])
 	liboctbstack_env.AppendUnique(CPPDEFINES = ['_DARWIN_C_SOURCE'])
 	liboctbstack_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
-if target_os not in ['arduino']:
+
+if target_os not in ['arduino', 'darwin']:  #GAR add darwin
 	liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,--no-undefined'])
+
+if target_os == 'darwin':  #GAR
+	liboctbstack_env.AppendUnique(CFLAGS = ['-Wno-unused-private-field'])  #GAR
+	liboctbstack_env.AppendUnique(CXXFLAGS = ['-Wno-unused-private-field'])  #GAR
+	liboctbstack_env.AppendUnique(CFLAGS = ['-Wno-unused-function'])  #GAR
+	liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,-undefined,error'])
+	liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,-dylib'])  #GAR
+
 if target_os == 'android':
     liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,-soname,liboctbstack.so'])
 
@@ -147,7 +160,7 @@ if with_tcp == True:
 
 liboctbstack_src.extend(env['cbor_files'])
 
-if target_os in ['arduino','darwin','ios'] :
+if target_os in ['arduino','ios'] :  #GAR
 	static_liboctbstack = liboctbstack_env.StaticLibrary('octbstack', liboctbstack_src)
 	liboctbstack_env.InstallTarget(static_liboctbstack, 'liboctbstack')
 	liboctbstack_env.UserInstallTargetLib(static_liboctbstack, 'liboctbstack')

@@ -29,7 +29,9 @@ target_os = env.get('TARGET_OS')
 build_sample = env.get('BUILD_SAMPLE')
 src_dir = env.get('SRC_DIR')
 
-if target_os not in ['android', 'arduino', 'darwin', 'ios', 'tizen']:
+#GAR: darwin does not have clock_gettime, which this needs, so we wait for a workaround
+#GAR: see https://gist.github.com/jbenet/1087739
+if target_os not in ['android', 'arduino', 'ios', 'tizen', 'darwin']: #GAR darwin
 
     SConscript(os.path.join('zigbee_wrapper', 'SConscript'))
 
@@ -38,7 +40,7 @@ if target_os not in ['android', 'arduino', 'darwin', 'ios', 'tizen']:
     SConscript(os.path.join('unittests', 'SConscript'))
 
     if build_sample == 'ON':
-	    if target_os in ['linux']:
+	    if target_os in ['darwin', 'linux']:   #GAR add darwin
 		    target_path = target_os
 		    SConscript(os.path.join('samples', target_path, 'SConscript'))
 

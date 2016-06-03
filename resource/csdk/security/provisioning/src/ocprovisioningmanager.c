@@ -20,7 +20,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
-#include "ocprovisioningmanager.h"
+#include "ocprovisioning_manager.h"   //GAR case-sensitivity
 #include "pmutility.h"
 #include "ownershiptransfermanager.h"
 #include "oic_malloc.h"

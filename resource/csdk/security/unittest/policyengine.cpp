@@ -21,7 +21,15 @@
 #include "gtest/gtest.h"
 #include <pwd.h>
 #include <grp.h>
-#include <linux/limits.h>
+#ifdef __APPLE__	//GAR
+    #include <limits.h>
+#else
+    #ifdef linux		//GAR
+        #include <linux/limits.h>
+    #else
+        #include <limits.h>	//GAR
+    #endif
+#endif
 #include "ocstack.h"
 #include "cainterface.h"
 #include "srmresourcestrings.h"

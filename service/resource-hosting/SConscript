@@ -62,6 +62,9 @@ if target_os not in ['windows', 'winrt']:
 if target_os not in ['darwin', 'ios', 'windows', 'winrt']:
 	resourcehosting_env.AppendUnique(LINKFLAGS = ['-Wl,--no-undefined'])
 
+if target_os == 'darwin':  #GAR
+	resourcehosting_env.AppendUnique(LINKFLAGS = ['-Wl,-undefined,error'])
+
 if target_os == 'linux':
 	resourcehosting_env.AppendUnique(LIBS = ['pthread'])
 

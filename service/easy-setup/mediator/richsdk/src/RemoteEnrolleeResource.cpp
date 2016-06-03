@@ -216,11 +216,16 @@ namespace OIC
             currTime.tv_nsec=0;
 
             ESResult res = ES_OK;
+	    int clock_res;	//GAR
             #ifdef _POSIX_MONOTONIC_CLOCK
-                int clock_res = clock_gettime(CLOCK_MONOTONIC, &startTime);
+		#ifdef __APPLE__
+		//GAR clock_gettime unsupported, waiting for workaround
+		#else
+                    clock_res = clock_gettime(CLOCK_MONOTONIC, &startTime);
+		#endif
             #else
-                int clock_res = clock_gettime(CLOCK_REALTIME, &startTime);
-            #endif
+                    clock_res = clock_gettime(CLOCK_REALTIME, &startTime);
+            #endif //GAR
 
             if (0 != clock_res)
             {
@@ -230,7 +235,11 @@ namespace OIC
             while (ES_OK == res || m_discoveryResponse == false)
             {
                 #ifdef _POSIX_MONOTONIC_CLOCK
+		    #ifdef __APPLE__ //GAR
+			//GAR clock_gettime unsupported, waiting for workaround
+		    #else
                         clock_res = clock_gettime(CLOCK_MONOTONIC, &currTime);
+		    #endif   //GAR
                 #else
                         clock_res = clock_gettime(CLOCK_REALTIME, &currTime);
                 #endif

@@ -314,12 +314,14 @@ namespace OC
         ((int64_t*)array)[pos] = item;
     }
 
+  /*GAR no type _Bit_reference in std:: - I think it's an old GNU
+    thingie, and I don't know what to use instead.  a generic pointer?
     template<>
     void get_payload_array::copy_to_array(std::_Bit_reference br, void* array, size_t pos)
     {
         ((bool*)array)[pos] = static_cast<bool>(br);
     }
-
+  */
     template<>
     void get_payload_array::copy_to_array(std::string item, void* array, size_t pos)
     {

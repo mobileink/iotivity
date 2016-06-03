@@ -25,7 +25,7 @@
 #include "logger.h"
 #include "oic_malloc.h"
 #include "utlist.h"
-#include "ocprovisioningmanager.h"
+#include "ocprovisioning_manager.h"   //GAR  case-sensitivity
 #include "secureresourceprovider.h"
 #include "oxmjustworks.h"
 #include "oic_string.h"

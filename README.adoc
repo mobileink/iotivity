@@ -16,6 +16,30 @@ Branch `darwin` is where darwin development takes place.
 Branch `master` pulls in changes from branch `darwin`. So that's what
 you get by default if you fork/clone this repo.
 
+=== edits
+
+I've marked the edits I made to port to Darwin with GAR, e.g. //GAR, #GAR, etc.
+
+Edits include not only changes needed to get running on darwin, but
+also some changes to eliminate warnings.
+
+One major change: in
+service/resource-encapsulation/include/RCSResourceObject.h I had to
+reorganize the code to eliminate an "incomplete type" error.  I pulled
+an embedded class (WeakGuard) out and made it a peer friend class.
+related changes also in RCSResource.cpp
+
+
+I also took the liberty of doing a little renaming where called for.
+E.g. some of the samples were called "linux sample foo ..." but
+they're not linux specific so I fixed that.  e.g.
+
+service/resource-container/examples/DiscomfortIndexSensorBundle/src/inputSensors/THSensorApp1/SConscript
+
+=== todo
+
+clock_gettime is unsupported on os x; see `service/easy-setup/mediator/richsdk/src/RemoteEnrolleeResource.cpp`
+
 == tools
 
 Some darwin-specific tools you may find useful along the way:

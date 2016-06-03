@@ -58,7 +58,12 @@ if target_os != 'tizen':
 	provisioning_env.AppendUnique(CPPPATH = ['../../../../extlibs/sqlite3'])
 
 provisioning_env.AppendUnique(CFLAGS = ['-D__WITH_DTLS__'])
-provisioning_env.AppendUnique(CFLAGS = ['-std=c99'])
+if target_os == 'darwin':  //GAR
+   provisioning_env.AppendUnique(CFLAGS = ['-std=c11'])
+   provisioning_env.AppendUnique(CFLAGS = ['-Wno-unused']) #GAR avoid unused foo warnings
+else:
+   provisioning_env.AppendUnique(CFLAGS = ['-std=c99'])
+
 if target_os not in ['windows', 'winrt']:
 	provisioning_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall', '-pthread', '-D__WITH_DTLS__'])
 
@@ -100,7 +105,7 @@ provisioning_src = [
 	'src/credentialgenerator.c',
 	'src/ownershiptransfermanager.c',
 	'src/secureresourceprovider.c',
-	'src/ocprovisioningmanager.c',
+	'src/ocprovisioning_manager.c',  #GAR avoid case-insensitive clashes
 	'src/oxmjustworks.c',
 	'src/oxmrandompin.c',
 	'src/provisioningdatabasemanager.c' ]
@@ -116,6 +121,6 @@ provisioning_env.UserInstallTargetLib(provisioningserver, 'libocpmapi')
 if env.get('DTLS_WITH_X509') == '1':
 	SConscript('ck_manager/SConscript')
 
-if target_os in ['linux']:
+if target_os in ['darwin','linux']:    #GAR add darwin
 	SConscript('sample/SConscript')
 

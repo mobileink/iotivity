@@ -34,6 +34,12 @@
 #include <vector>
 #include <map>
 
+#ifdef __APPLE__  //GAR
+    #ifdef __MACH__
+#include <cstddef>
+    #endif
+#endif
+
 #include <AttributeValue.h>
 #include <StringConstants.h>
 

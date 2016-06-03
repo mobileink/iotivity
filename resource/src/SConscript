@@ -50,8 +50,13 @@ target_os = env.get('TARGET_OS')
 if target_os == 'linux':
 	oclib_env.AppendUnique(LIBS = ['pthread'])
 
-if target_os not in ['windows', 'winrt']:
+if target_os not in ['windows', 'winrt', 'darwin']:  #GAR add darwin
 	oclib_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall', '-fPIC'])
+
+if target_os == 'darwin':  #GAR:  and version >= Mavericks?
+	oclib_env.AppendUnique(CXXFLAGS = ['-std=c++11', '-stdlib=libc++', '-fPIC'])
+	oclib_env.AppendUnique(CXXFLAGS = ['-Wall', '-Wno-unused'])
+	oclib_env.AppendUnique(LINKFLAGS = ['-Wl,-undefined,error'])
 
 if target_os not in ['darwin', 'ios', 'windows', 'winrt']:
 	oclib_env.AppendUnique(LINKFLAGS = ['-Wl,--no-undefined'])
