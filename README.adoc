@@ -6,6 +6,10 @@ WARNING: This is derived from the official Gerrit repo, created for
 experimentation.  If you want the real thing, you should obtain it
 from the official https://www.iotivity.org/[Iotivity site].
 
+To build:  `$ scons SYS_VERSION=10.11` (or whatever your OS X version is).
+
+To see what's happening: `$ scons SYS_VERSION=10.11 VERBOSE=true 2>&1 | tee build.log`
+
 == branches
 
 The `iotivity-master` branch cleanly tracks the official Gerrit master
@@ -39,6 +43,14 @@ service/resource-container/examples/DiscomfortIndexSensorBundle/src/inputSensors
 === todo
 
 clock_gettime is unsupported on os x; see `service/easy-setup/mediator/richsdk/src/RemoteEnrolleeResource.cpp`
+
+Remove dependency on xcode and OS X version etc. This should be a
+strictly Darwin build.  An OS X specific build - e.g. to support an OS
+X Framework - should be a separate project.
+
+* don't use 'xcodebuild -showsdks' to get config info - darwin could be used with other toolchains
+* use uname -r rather than SYS_VERSION
+* use <sys/param.h> (a BSD feature?)
 
 == tools
 
