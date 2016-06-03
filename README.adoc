@@ -40,7 +40,9 @@ you get by default if you fork/clone this repo.
 
 === edits
 
-I've marked the edits I made to port to Darwin with GAR, e.g. //GAR, #GAR, etc.
+I've marked the edits I made to port to Darwin with GAR, e.g. //GAR,
+#GAR, etc.  So you can find them all (I hope) by running `$ grep -R
+GAR ./` from the root of a clean repo.
 
 Edits include not only changes needed to get running on darwin, but
 also some changes to eliminate warnings.
