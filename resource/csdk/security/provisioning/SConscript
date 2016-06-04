@@ -59,7 +59,6 @@ if target_os != 'tizen':
 
 provisioning_env.AppendUnique(CFLAGS = ['-D__WITH_DTLS__'])
 if target_os == 'darwin':  //GAR
-   provisioning_env.AppendUnique(CFLAGS = ['-std=c11'])
    provisioning_env.AppendUnique(CFLAGS = ['-Wno-unused']) #GAR avoid unused foo warnings
 else:
    provisioning_env.AppendUnique(CFLAGS = ['-std=c99'])

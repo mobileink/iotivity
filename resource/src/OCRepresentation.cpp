@@ -871,13 +871,13 @@ namespace OC
     OCRepresentation::AttributeItem OCRepresentation::operator[](const std::string& key)
     {
         OCRepresentation::AttributeItem attr{key, m_values};
-        return std::move(attr);
+        return attr; //GAR warning: moving a local object in a return statement prevents copy elision
     }
 
     const OCRepresentation::AttributeItem OCRepresentation::operator[](const std::string& key) const
     {
         OCRepresentation::AttributeItem attr{key, m_values};
-        return std::move(attr);
+        return attr; //GAR warning: moving a local object in a return statement prevents copy elision
     }
 
     const std::string& OCRepresentation::AttributeItem::attrname() const

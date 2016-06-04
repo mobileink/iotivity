@@ -60,7 +60,6 @@ liboctbstack_env.PrependUnique(CPPPATH = [
 
 if target_os not in ['arduino', 'windows', 'winrt']:
 	liboctbstack_env.AppendUnique(CPPDEFINES  = ['WITH_POSIX'])
-	liboctbstack_env.AppendUnique(CFLAGS = ['-std=c11'])  #GAR
 
 if liboctbstack_env.get('ROUTING') == 'GW':
 	liboctbstack_env.AppendUnique(CPPDEFINES = ['ROUTING_GATEWAY'])
@@ -107,9 +106,6 @@ if target_os not in ['arduino', 'darwin']:  #GAR add darwin
 	liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,--no-undefined'])
 
 if target_os == 'darwin':  #GAR
-	liboctbstack_env.AppendUnique(CFLAGS = ['-Wno-unused-private-field'])  #GAR
-	liboctbstack_env.AppendUnique(CXXFLAGS = ['-Wno-unused-private-field'])  #GAR
-	liboctbstack_env.AppendUnique(CFLAGS = ['-Wno-unused-function'])  #GAR
 	liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,-undefined,error'])
 	liboctbstack_env.AppendUnique(LINKFLAGS = ['-Wl,-dylib'])  #GAR
 

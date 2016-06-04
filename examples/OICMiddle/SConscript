@@ -41,7 +41,7 @@ examples_env.AppendUnique(CPPPATH = [
 
 target_os = env.get('TARGET_OS')
 if target_os not in ['windows', 'winrt', 'darwin']:   #GAR add darwin
-	examples_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall', '-pthread'])
+	examples_env.AppendUnique(CXXFLAGS = ['-pthread'])
 
 	# Note: 'pthread' is in libc for android. On other platform, if use
 	# new gcc(>4.9?) it isn't required, otherwise, it's required
@@ -49,8 +49,10 @@ if target_os not in ['windows', 'winrt', 'darwin']:   #GAR add darwin
 		examples_env.AppendUnique(LIBS = ['-lpthread'])
 
 if target_os == 'darwin':  #GAR:  and version >= Mavericks?
-	examples_env.AppendUnique(CXXFLAGS = ['-std=c++11', '-stdlib=libc++', '-Wall', '-fPIC'])
-	examples_env.AppendUnique(CXXFLAGS = ['-Wall', '-Wno-unused']) #GAR turn off unused-foo warnings
+	examples_env.Append(CXXFLAGS = ['-stdlib=libc++', '-fPIC'])
+
+# if warn-unused  #GAR
+#    examples_env.Append(CXXFLAGS = ['-Wunused-function'])  etc.
 
 examples_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 examples_env.PrependUnique(LIBS = ['coap'])

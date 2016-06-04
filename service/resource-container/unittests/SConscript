@@ -107,7 +107,6 @@ if int(containerJavaSupport):
         print ''
 
 if target_os not in ['windows', 'winrt']:
-    container_gtest_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall'])
     if target_os != 'android':
         container_gtest_env.AppendUnique(CXXFLAGS = ['-pthread'])
         container_gtest_env.AppendUnique(LIBS = ['pthread'])

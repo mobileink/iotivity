@@ -13,7 +13,7 @@ ws_sample_env = lib_env.Clone()
 # Build flags
 ######################################################################
 ws_sample_env.AppendUnique(CPPPATH = ['include'])
-ws_sample_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall', '-pthread'])
+ws_sample_env.AppendUnique(CXXFLAGS = ['-pthread'])
 #GAR ws_sample_env.AppendUnique(CPPDEFINES = ['LINUX'])
 ws_sample_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 ws_sample_env.AppendUnique(LIBS = ['coap'])

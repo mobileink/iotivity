@@ -84,7 +84,6 @@ if int(containerJavaSupport):
 
 
 if target_os not in ['windows', 'winrt']:
-    resource_container_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall'])
     if target_os != 'android':
         resource_container_env.AppendUnique(CXXFLAGS = ['-pthread'])
 

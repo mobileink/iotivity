@@ -51,7 +51,6 @@ server_builder_env.AppendUnique(CPPPATH = [env.get('SRC_DIR')+'/extlibs', 'inclu
 server_builder_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 
 if target_os not in ['windows', 'winrt']:
-    server_builder_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall'])
     if target_os != 'android':
         server_builder_env.AppendUnique(CXXFLAGS = ['-pthread'])
 

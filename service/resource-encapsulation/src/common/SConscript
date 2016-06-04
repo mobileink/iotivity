@@ -52,7 +52,7 @@ rcs_common_env.AppendUnique(CPPPATH = [
 rcs_common_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 
 if target_os not in ['windows', 'winrt']:
-    rcs_common_env.AppendUnique(CXXFLAGS = ['-std=c++0x', '-Wall'])
+    rcs_common_env.AppendUnique(CXXFLAGS = ['-Wall'])
     if target_os != 'android':
         rcs_common_env.AppendUnique(CXXFLAGS = ['-pthread'])
         rcs_common_env.AppendUnique(LIBS = ['pthread'])

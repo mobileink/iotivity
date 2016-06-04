@@ -73,7 +73,6 @@ else:
 	libocsrm_env.AppendUnique(CFLAGS = ['-fPIC'])
 
 if target_os in ['darwin', 'ios']:
-	libocsrm_env.AppendUnique(CFLAGS = ['-std=c11'])  #GAR
 	libocsrm_env.AppendUnique(CPPDEFINES = ['_DARWIN_C_SOURCE'])
 	libocsrm_env.AppendUnique(LIBPATH = [env.get('BUILD_DIR')])
 	libocsrm_env.AppendUnique(LIBS = ['coap'])
